@@ -1,0 +1,46 @@
+
+.inputFields{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 0;
+    
+}
+
+
+.dateFields{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    
+}
+
+.inputs{
+    width: 80%;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.errorMsg{
+    margin: 0;
+    font-size: 12px;
+}
+
+
+.buttonField{
+    display: flex;
+    flex-direction: row-reverse;
+    border-bottom: 1px solid gray;
+}
+
+.iconArrow{
+    background-color: hsl(259, 100%, 65%);
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+
+    display: flex;
+    justify-content: flex-end;
+
+    position:relative;
+    top: 30px;
+    
+}

@@ -1,0 +1,9 @@
+.outputValue{
+    font-size: 64px;
+    margin: 0px;
+    font-weight: 700;
+}
+
+.outputNumber{
+    color: hsl(259, 100%, 65%);
+}
