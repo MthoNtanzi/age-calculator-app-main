@@ -1,5 +1,6 @@
 body {
   background-color: hsl(0, 0%, 94%);
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   height: 100vh;
   display: flex;

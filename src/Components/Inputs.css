@@ -17,6 +17,9 @@
     width: 80%;
     font-size: 32px;
     font-weight: 700;
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 10px;
 }
 
 .errorMsg{
