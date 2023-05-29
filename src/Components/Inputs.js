@@ -3,6 +3,7 @@ import './Inputs.css';
 import arrow from '../images/icon-arrow.svg';
 
 export default function Inputs() {
+  // Get the value for the days and set the state
   const [inputDayVal, setInputDayVal] = useState("");
   const [inputMonthVal, setInputMonthVal] = useState("");
   const [inputYearVal, setInputYearVal] = useState("");
@@ -26,81 +27,118 @@ export default function Inputs() {
     console.log(year);
   }
 
+
+  // validate user Input
+  let errorMsgDayBool = false;
+  let errorMsgMonthBool = false;
+  let errorMsgYearBool = false;
+
+  let dayErrorMsg;
+  let monthErrorMsg;
+  let yearErrorMsg;
+  if(inputDayVal > 31){
+    errorMsgDayBool = true;
+    dayErrorMsg = "Must be a valid day";
+  }
+  if(inputMonthVal > 12){
+    errorMsgMonthBool = true;
+    monthErrorMsg = "Must be a valid month";
+  }
+
+  var dateobj = new Date();
+  var yearObject = dateobj.getFullYear();
+  if(inputYearVal > yearObject){
+    errorMsgYearBool = true;
+    yearErrorMsg = "Must be in the past";
+  }
+
   const giveDate = () => {
-    const dateString = `${inputYearVal}-${inputMonthVal}-${inputDayVal}`;
-    setTheDate(dateString);
-    console.log(theDate);
-
-
-    const timestamp = Date.parse(dateString);
-    const newDate = new Date(timestamp);
-    console.log(newDate);
-
-
-    const today = new Date(),
-    
-    dob = new Date(newDate),
-    //difference in milliseconds
-    diff = today.getTime() - dob.getTime(),
-    //convert milliseconds into years
-    years = Math.floor(diff / 31556736000),
-    //1 day has 86400000 milliseconds
-    days_diff= Math.floor((diff % 31556736000) / 86400000),
-    //1 month has 30.4167 days
-    months = Math.floor(days_diff / 30.4167),
-    days = Math.floor(days_diff % 30.4167);
-   
-  //  console.log(`${years} years ${months} months ${days} days`);
-   let trueAge = {"year": years, "month":months, "day": days};
-  //  return trueAge;
+    if(inputYearVal === "" && inputMonthVal === "" && inputDayVal === ""){
+      dayErrorMsg = "This feild is required";
+      console.log("error")
+    }
+    else{
+      const dateString = `${inputYearVal}-${inputMonthVal}-${inputDayVal}`;
+      setTheDate(dateString);
+      console.log(theDate);
   
-   console.log(trueAge);
+  
+      const timestamp = Date.parse(dateString);
+      const newDate = new Date(timestamp);
+      console.log(newDate);
+  
+  
+      const today = new Date(),
+      
+      dob = new Date(newDate),
+      //difference in milliseconds
+      diff = today.getTime() - dob.getTime(),
+      //convert milliseconds into years
+      years = Math.floor(diff / 31556736000),
+      //1 day has 86400000 milliseconds
+      days_diff= Math.floor((diff % 31556736000) / 86400000),
+      //1 month has 30.4167 days
+      months = Math.floor(days_diff / 30.4167),
+      days = Math.floor(days_diff % 30.4167);
+     
+    //  console.log(`${years} years ${months} months ${days} days`);
+     let trueAge = {"year": years, "month":months, "day": days};
+    //  return trueAge;
+    
+     console.log(trueAge);
+    }
+
+    
     
   }
 
   return (
     <>
       <div className='inputFields'>
+        {/* start of day area */}
         <div className='dateFields'>
-        <label>DAY</label>
+        <label className={`${errorMsgDayBool? "errorMsgTrue": ""}`}>DAY</label>
         <input 
-        className='inputs'
+        className={`inputs ${errorMsgDayBool? "inputErrorTrue": ""}`}
         type='number' 
         placeholder='DD'
         name='day'
         value={inputDayVal}
         onChange={handleDayChange}
         />
-        <p className='errorMsg'
-          id="dayErrorMsg">Error</p>
+        <p className={`errorMsg ${errorMsgDayBool? "errorMsgTrue": ""}`}>{dayErrorMsg}</p>
+        {/* End of day area */}
+
+        {/* Start of month area */}
         </div>
         <div className='dateFields'>
-        <label>MONTH</label>
+        <label className={`${errorMsgMonthBool? "errorMsgTrue": ""}`}>MONTH</label>
         <input 
-        className='inputs'
+        className={`inputs ${errorMsgMonthBool? "inputErrorTrue": ""}`}
         type='number' 
         placeholder='MM'
         name='month'
         value={inputMonthVal}
         onChange={handleMonthChange}
         />
-        <p className='errorMsg'
-          id="monthErrorMsg">Error</p>
+        <p className={`errorMsg ${errorMsgMonthBool? "errorMsgTrue": ""}`}>{monthErrorMsg}</p>
         </div>
+        {/* End of Month area */}
+
+        {/* Start of year area */}
         <div className='dateFields'>
-        <label>YEAR</label>
+        <label className={`${errorMsgYearBool? "errorMsgTrue": ""}`}>YEAR</label>
         <input 
-        className='inputs'
+        className={`inputs ${errorMsgYearBool? "inputErrorTrue": ""}`}
         type='number' 
         placeholder='YYYY'
         name='year'
         value={inputYearVal}
         onChange={handleYearChange}
         />
-        <p className='errorMsg'
-          id="yearErrorMsg">Error</p>
+        <p className={`errorMsg ${errorMsgYearBool? "errorMsgTrue": ""}`}>{yearErrorMsg}</p>
         </div>
-        
+        {/* End of year area */}
       </div>
       {/* Calculate button */}
       <div className='buttonField'>

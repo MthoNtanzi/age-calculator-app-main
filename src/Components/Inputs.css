@@ -47,3 +47,12 @@
     top: 30px;
     
 }
+
+/* Styles for errors */
+.errorMsgTrue{
+    color: hsl(0, 100%, 67%);  
+}
+.inputErrorTrue{
+    color: #000;
+    border-color: hsl(0, 100%, 67%);
+}
