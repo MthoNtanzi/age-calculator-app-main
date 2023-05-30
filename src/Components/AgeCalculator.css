@@ -1,3 +1,6 @@
+*{
+  transition: ease-in 300ms;
+}
 
 .inputFields{
     display: grid;
@@ -47,6 +50,10 @@
     top: 30px;
     
 }
+.iconArrow:hover{
+    background-color: #000;
+    cursor: pointer;
+}
 
 /* Styles for errors */
 .errorMsgTrue{
@@ -55,4 +62,14 @@
 .inputErrorTrue{
     color: #000;
     border-color: hsl(0, 100%, 67%);
+}
+
+.outputValue{
+    font-size: 64px;
+    margin: 0px;
+    font-weight: 700;
+}
+
+.outputNumber{
+    color: hsl(259, 100%, 65%);
 }

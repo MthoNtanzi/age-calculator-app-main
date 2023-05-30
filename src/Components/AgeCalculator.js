@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Inputs.css';
+import './AgeCalculator.css';
 import arrow from '../images/icon-arrow.svg';
 
 export default function Inputs() {
@@ -8,6 +8,9 @@ export default function Inputs() {
   const [inputMonthVal, setInputMonthVal] = useState("");
   const [inputYearVal, setInputYearVal] = useState("");
   const [theDate, setTheDate] = useState("");
+  const [outYear, setOutYear] = useState("");
+  const [outMonth, setOutMonth] = useState("");
+  const [outDay, setOutDay] = useState("");
 
   const handleDayChange = (e) =>{
     const day = e.target.value;
@@ -45,8 +48,9 @@ export default function Inputs() {
     monthErrorMsg = "Must be a valid month";
   }
 
-  var dateobj = new Date();
-  var yearObject = dateobj.getFullYear();
+  const dateobj = new Date();
+  const yearObject = dateobj.getFullYear();
+
   if(inputYearVal > yearObject){
     errorMsgYearBool = true;
     yearErrorMsg = "Must be in the past";
@@ -55,9 +59,11 @@ export default function Inputs() {
   const giveDate = () => {
     if(inputYearVal === "" && inputMonthVal === "" && inputDayVal === ""){
       dayErrorMsg = "This feild is required";
+      errorMsgDayBool = true;
+      errorMsgMonthBool = true;
+      errorMsgYearBool = true;
       console.log("error")
-    }
-    else{
+    }else{
       const dateString = `${inputYearVal}-${inputMonthVal}-${inputDayVal}`;
       setTheDate(dateString);
       console.log(theDate);
@@ -81,17 +87,11 @@ export default function Inputs() {
       months = Math.floor(days_diff / 30.4167),
       days = Math.floor(days_diff % 30.4167);
      
-    //  console.log(`${years} years ${months} months ${days} days`);
-     let trueAge = {"year": years, "month":months, "day": days};
-    //  return trueAge;
-    
-     console.log(trueAge);
+      setOutYear(years);
+      setOutMonth(months);
+      setOutDay(days);
     }
-
-    
-    
   }
-
   return (
     <>
       <div className='inputFields'>
@@ -143,7 +143,12 @@ export default function Inputs() {
       {/* Calculate button */}
       <div className='buttonField'>
           <img onClick={giveDate} src={arrow} className='iconArrow' alt='Calculate Arrow' />
-        </div>
+      </div>
+      <div>
+        <p className='outputValue'><span id='yearField' className='outputNumber'>{outYear ? outYear : '--'}</span>years</p>
+        <p className='outputValue'><span id='monthField' className='outputNumber'>{outMonth ? outMonth : '--'}</span>months</p>
+        <p className='outputValue'><span id='dayField' className='outputNumber'>{outDay ? outDay : '--'}</span>days</p>
+      </div>
     </>
   )
 }

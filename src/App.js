@@ -1,12 +1,9 @@
-import Inputs from './Components/Inputs';
-import Outputs from './Components/Outputs';
-import './App.css';
+import AgeCalculator from './Components/AgeCalculator';
 
 function App() {
   return (
     <>
-      <Inputs />
-      <Outputs />
+      <AgeCalculator />
     </>
   );
 }
