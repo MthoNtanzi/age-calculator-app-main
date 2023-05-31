@@ -15,19 +15,16 @@ export default function Inputs() {
   const handleDayChange = (e) =>{
     const day = e.target.value;
     setInputDayVal(day);
-    console.log(day);
   }
 
   const handleMonthChange = (e) =>{
     const month = e.target.value;
     setInputMonthVal(month);
-    console.log(month);
   }
  
   const handleYearChange = (e) =>{
     const year = e.target.value;
     setInputYearVal(year);
-    console.log(year);
   }
 
 
@@ -59,21 +56,19 @@ export default function Inputs() {
   const giveDate = () => {
     if(inputYearVal === "" && inputMonthVal === "" && inputDayVal === ""){
       dayErrorMsg = "This feild is required";
+      monthErrorMsg = "This feild is required";
+      yearErrorMsg = "This feild is required";
       errorMsgDayBool = true;
       errorMsgMonthBool = true;
       errorMsgYearBool = true;
-      console.log("error")
     }else{
       const dateString = `${inputYearVal}-${inputMonthVal}-${inputDayVal}`;
       setTheDate(dateString);
-      console.log(theDate);
-  
-  
+    
       const timestamp = Date.parse(dateString);
       const newDate = new Date(timestamp);
-      console.log(newDate);
   
-  
+      
       const today = new Date(),
       
       dob = new Date(newDate),
@@ -97,46 +92,46 @@ export default function Inputs() {
       <div className='inputFields'>
         {/* start of day area */}
         <div className='dateFields'>
-        <label className={`${errorMsgDayBool? "errorMsgTrue": ""}`}>DAY</label>
+        <label className={`${errorMsgDayBool ? "errorMsgTrue": ""}`}>DAY</label>
         <input 
-        className={`inputs ${errorMsgDayBool? "inputErrorTrue": ""}`}
+        className={`inputs ${errorMsgDayBool ? "inputErrorTrue": ""}`}
         type='number' 
         placeholder='DD'
         name='day'
         value={inputDayVal}
         onChange={handleDayChange}
         />
-        <p className={`errorMsg ${errorMsgDayBool? "errorMsgTrue": ""}`}>{dayErrorMsg}</p>
+        <p className={`errorMsg ${errorMsgDayBool ? "errorMsgTrue": ""}`}>{dayErrorMsg}</p>
         {/* End of day area */}
 
         {/* Start of month area */}
         </div>
         <div className='dateFields'>
-        <label className={`${errorMsgMonthBool? "errorMsgTrue": ""}`}>MONTH</label>
+        <label className={`${errorMsgMonthBool ? "errorMsgTrue": ""}`}>MONTH</label>
         <input 
-        className={`inputs ${errorMsgMonthBool? "inputErrorTrue": ""}`}
+        className={`inputs ${errorMsgMonthBool ? "inputErrorTrue": ""}`}
         type='number' 
         placeholder='MM'
         name='month'
         value={inputMonthVal}
         onChange={handleMonthChange}
         />
-        <p className={`errorMsg ${errorMsgMonthBool? "errorMsgTrue": ""}`}>{monthErrorMsg}</p>
+        <p className={`errorMsg ${errorMsgMonthBool ? "errorMsgTrue": ""}`}>{monthErrorMsg}</p>
         </div>
         {/* End of Month area */}
 
         {/* Start of year area */}
         <div className='dateFields'>
-        <label className={`${errorMsgYearBool? "errorMsgTrue": ""}`}>YEAR</label>
+        <label className={`${errorMsgYearBool ? "errorMsgTrue": ""}`}>YEAR</label>
         <input 
-        className={`inputs ${errorMsgYearBool? "inputErrorTrue": ""}`}
+        className={`inputs ${errorMsgYearBool ? "inputErrorTrue": ""}`}
         type='number' 
         placeholder='YYYY'
         name='year'
         value={inputYearVal}
         onChange={handleYearChange}
         />
-        <p className={`errorMsg ${errorMsgYearBool? "errorMsgTrue": ""}`}>{yearErrorMsg}</p>
+        <p className={`errorMsg ${errorMsgYearBool ? "errorMsgTrue": ""}`}>{yearErrorMsg}</p>
         </div>
         {/* End of year area */}
       </div>
