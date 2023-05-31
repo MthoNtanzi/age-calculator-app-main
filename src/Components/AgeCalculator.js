@@ -7,7 +7,6 @@ export default function Inputs() {
   const [inputDayVal, setInputDayVal] = useState("");
   const [inputMonthVal, setInputMonthVal] = useState("");
   const [inputYearVal, setInputYearVal] = useState("");
-  const [theDate, setTheDate] = useState("");
   const [outYear, setOutYear] = useState("");
   const [outMonth, setOutMonth] = useState("");
   const [outDay, setOutDay] = useState("");
@@ -63,12 +62,11 @@ export default function Inputs() {
       errorMsgYearBool = true;
     }else{
       const dateString = `${inputYearVal}-${inputMonthVal}-${inputDayVal}`;
-      setTheDate(dateString);
     
       const timestamp = Date.parse(dateString);
       const newDate = new Date(timestamp);
   
-      
+
       const today = new Date(),
       
       dob = new Date(newDate),
